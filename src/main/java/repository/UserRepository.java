@@ -105,4 +105,21 @@ public class UserRepository {
         return users;
 
     }
+
+    public int saveAll(User[]users) throws SQLException {
+        String sql = "INSERT INTO user1(userName, password, signup_date) values(?,?,?)";
+        for (int i = 0; i < users.length-1; i++) {
+            sql = sql.concat(",(?,?,?)");
+        }
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        int i = 0;
+        for (User u:users) {
+            preparedStatement.setString(i+1,u.getUserName());
+            preparedStatement.setString(i+2,u.getPassword());
+            preparedStatement.setString(i+3, u.getSignup_date());
+            i+=3;
+        }
+        int result = preparedStatement.executeUpdate();
+        return result;
+    }
 }
