@@ -40,4 +40,12 @@ public class UserService {
         else
             System.out.println("OOps!:(");
     }
+
+    public void delete(int id) throws SQLException {
+        int result = userRepository.delete(id);
+        if (result != 0)
+            System.out.println("successfully deleted from database");
+        else
+            System.out.println("OOps!:(");
+    }
 }
