@@ -44,12 +44,12 @@ public class UserRepository {
             return null;
     }
 
-    public int update(User user,int id) throws SQLException {
+    public int update(String userName, String password, String signup_date ,int id) throws SQLException {
         String query = "UPDATE user1 SET userName = ?, password = ?, signup_date = ? WHERE id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, user.getUserName());
-        preparedStatement.setString(2,user.getPassword());
-        preparedStatement.setString(3, user.getSignup_date());
+        preparedStatement.setString(1, userName);
+        preparedStatement.setString(2,password);
+        preparedStatement.setString(3, signup_date);
         preparedStatement.setInt(4,id);
         int result = preparedStatement.executeUpdate();
         return result;
