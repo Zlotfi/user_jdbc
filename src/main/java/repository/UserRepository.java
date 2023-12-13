@@ -106,7 +106,7 @@ public class UserRepository {
 
     }
 
-    public void saveAll(User[]users) throws SQLException {
+    public User[] saveAll(User[]users) throws SQLException {
         String sql = "INSERT INTO user1(userName, password, signup_date) values(?,?,?)";
         for (int i = 0; i < users.length-1; i++) {
             sql = sql.concat(",(?,?,?)");
@@ -120,5 +120,6 @@ public class UserRepository {
             i+=3;
         }
         preparedStatement.executeUpdate();
+        return users;
     }
 }
