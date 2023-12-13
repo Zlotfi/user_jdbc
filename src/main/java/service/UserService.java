@@ -48,4 +48,9 @@ public class UserService {
         else
             System.out.println("OOps!:(");
     }
+
+    public User load(int user_id) throws SQLException {
+        User user = userRepository.load(user_id);
+        return user;
+    }
 }
