@@ -17,7 +17,7 @@ public class UserService {
     public void register(User user) throws SQLException {
         int result = userRepository.save(user);
         if (result != 0)
-            System.out.println(user.getUserName() + "successfully added to database");
+            System.out.println(user.getUserName() + " successfully added to database");
         else
             System.out.println("ERROR!!");
     }
