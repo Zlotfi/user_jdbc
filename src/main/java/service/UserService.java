@@ -50,7 +50,9 @@ public class UserService {
     }
 
     public User load(int user_id) throws SQLException {
-        User user = userRepository.load(user_id);
+        System.out.println("id: ");
+        int id = scanner.nextInt();
+        User user = userRepository.load(id);
         return user;
     }
 
