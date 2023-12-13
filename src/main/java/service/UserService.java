@@ -53,4 +53,9 @@ public class UserService {
         User user = userRepository.load(user_id);
         return user;
     }
+
+    public User[] loadAll() throws SQLException {
+        User[] users = userRepository.loadAll();
+        return users;
+    }
 }
