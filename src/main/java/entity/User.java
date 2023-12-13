@@ -13,6 +13,10 @@ public class User {
         this.signup_date = signup_date;
     }
 
+    public User() {
+
+    }
+
     public Integer getUser_id() {
         return user_id;
     }
