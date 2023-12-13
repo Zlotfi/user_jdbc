@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 public class UserRepository {
 
@@ -80,5 +81,28 @@ public class UserRepository {
         }
         else
             return null;
+    }
+
+    public User[] loadAll() throws SQLException {
+        String sql = "SELECT * FROM user1";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.last();
+        //System.out.println(resultSet.last());
+        User[] users = new User[resultSet.getRow()];
+        resultSet.beforeFirst();
+        int counter = 0;
+        while (resultSet.next()){
+            users[counter]= new User(
+                    resultSet.getInt(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4)
+            );
+            counter++;
+        } //end while
+        System.out.println(Arrays.toString(users));
+        return users;
+
     }
 }
