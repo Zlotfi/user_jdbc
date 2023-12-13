@@ -43,4 +43,15 @@ public class UserRepository {
         else
             return null;
     }
+
+    public int update(User user,int id) throws SQLException {
+        String query = "UPDATE user1 SET userName = ?, password = ?, signup_date = ? WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, user.getUserName());
+        preparedStatement.setString(2,user.getPassword());
+        preparedStatement.setString(3, user.getSignup_date());
+        preparedStatement.setInt(4,id);
+        int result = preparedStatement.executeUpdate();
+        return result;
+    }
 }
