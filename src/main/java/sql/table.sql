@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS user1(
+    user_id SERIAL PRIMARY KEY,
+    userName VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    signup_date VARCHAR(50) NOT NULL
+);
