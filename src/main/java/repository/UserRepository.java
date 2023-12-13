@@ -44,22 +44,41 @@ public class UserRepository {
             return null;
     }
 
-    public int update(String userName, String password, String signup_date ,int id) throws SQLException {
-        String query = "UPDATE user1 SET userName = ?, password = ?, signup_date = ? WHERE id = ?";
+    public int update(String userName, String password, String signup_date ,int user_id) throws SQLException {
+        String query = "UPDATE user1 SET userName = ?, password = ?, signup_date = ? WHERE user_id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, userName);
         preparedStatement.setString(2,password);
         preparedStatement.setString(3, signup_date);
-        preparedStatement.setInt(4,id);
+        preparedStatement.setInt(4,user_id);
         int result = preparedStatement.executeUpdate();
         return result;
     }
 
-    public int delete(int id) throws SQLException {
-        String query = "DELETE FROM user1 WHERE id = ?";
+    public int delete(int user_id) throws SQLException {
+        String query = "DELETE FROM user1 WHERE user_id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1,user_id);
         int result = preparedStatement.executeUpdate();
         return result;
+    }
+
+    public User load(int user_id) throws SQLException {
+        String query = "SELECT * FROM user1 WHERE user_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1,user_id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()){
+            User user = new User(
+                    resultSet.getInt("user_id"),
+                    resultSet.getString("userName"),
+                    resultSet.getString("password"),
+                    resultSet.getString("signup_date")
+            );
+            System.out.println(user);
+            return user;
+        }
+        else
+            return null;
     }
 }
