@@ -58,4 +58,9 @@ public class UserService {
         User[] users = userRepository.loadAll();
         return users;
     }
+
+    public User[] saveAll(User[] users) throws SQLException {
+        User[] user = userRepository.saveAll(users);
+        return user;
+    }
 }
