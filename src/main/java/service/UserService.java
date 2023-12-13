@@ -19,4 +19,9 @@ public class UserService {
         else
             System.out.println("ERROR!!");
     }
+
+    public User login(String userName) throws SQLException {
+        User user = userRepository.login(userName);
+        return user;
+    }
 }
